@@ -9,6 +9,25 @@
 The U.S. Committee on Extension to the Standard Atmosphere (COESA) atmosphere
 model, also known as the U.S. Standard Atmosphere, 1976.
 
+## Usage
+
+The main function is `atmosphere(z)`, which returns the atmospheric state at
+geometric altitude `z`, where `z` has units of meters.
+
+The atmospheric state object that is returned has the following accessors:
+`density`, `pressure`, `temperature`, `speed_of_sound`, and
+`mean_molecular_weight`.
+
+```julia
+using COESA
+atmos = atmosphere(123.0)
+rho = density(atmos)
+T = temperature(atmos)
+P = pressure(atmos)
+c = speed_of_sound(atmos)
+M = mean_molecular_weight(atmos)
+```
+
 ## Implementation
 
 For altitudes below 86km, the equations from the original report are used.  The
