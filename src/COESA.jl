@@ -2,16 +2,16 @@ module COESA
 
 export atmosphere, density, temperature, pressure, speed_of_sound, mean_molecular_weight
 
-const r0 = 6356766.0 # [m], effective Earth radius at 45 deg N latitude
-const g0 = 9.80665 # [m / s²] or [m² / s² m']
-const M0 = 28.9644 # [kg / kmol]
-const Rstar = 8.31432e3 # [N m / kmol K]
+const r0 = 6356766.0 # (m), effective Earth radius at 45 deg N latitude
+const g0 = 9.80665 # (m / s²) or (m² / s² m')
+const M0 = 28.9644 # (kg / kmol)
+const Rstar = 8.31432e3 # (N m / kmol K)
 const γ = 1.4
 
 geopotential_altitude(Z) = r0 * Z / (r0 + Z)
 
-const Hb = [0, 11, 20, 32, 47, 51, 71] * 1000 # [m']
-const Lmb = [-6.5, 0.0, 1.0, 2.8, 0.0, -2.8, -2.0] / 1000 # [K / m']
+const Hb = [0, 11, 20, 32, 47, 51, 71] * 1000 # (m')
+const Lmb = [-6.5, 0.0, 1.0, 2.8, 0.0, -2.8, -2.0] / 1000 # (K / m')
 
 function findb(H)
     i = 1
@@ -23,7 +23,7 @@ function findb(H)
 end
 
 const Tmb = let
-    Tmb = [288.15] # [K]
+    Tmb = [288.15] # (K)
     for i in 1:(length(Hb) - 1)
         push!(Tmb, Tmb[i] + Lmb[i] * (Hb[i + 1] - Hb[i]))
     end
@@ -59,7 +59,7 @@ end
 
 speed_of_sound_lower(T, M) = sqrt(γ * Rstar * T / M)
 
-const Ztable = [80.0, 80.5, 81.0, 81.5, 82.0, 82.5, 83.0, 83.5, 84.0, 84.5, 85.0, 85.5, 86.0] * 1000 # [m]
+const Ztable = [80.0, 80.5, 81.0, 81.5, 82.0, 82.5, 83.0, 83.5, 84.0, 84.5, 85.0, 85.5, 86.0] * 1000 # (m)
 const Mratiotable = [1.0, 0.999996, 0.999989, 0.999971, 0.999941, 0.999909, 0.999870, 0.999829, 0.999786, 0.999741, 0.999694, 0.999641, 0.999579]
 function mean_molecular_weight_ratio_lower(Z)
     Z < Ztable[1] && return 1.0
@@ -74,22 +74,22 @@ mean_molecular_weight_lower(Z) = M0 * mean_molecular_weight_ratio_lower(Z)
 
 function temperature_upper(Z)
     if Z <= 91_000
-        return 186.8673 # [K]
+        return 186.8673 # (K)
     elseif Z <= 110_000
-        const Tc = 263.1905 # [K]
-        const A = -76.3232 # [K]
-        const a = -19.9429 * 1000 # [m]
+        const Tc = 263.1905 # (K)
+        const A = -76.3232 # (K)
+        const a = -19.9429 * 1000 # (m)
         return Tc + A * sqrt(1 - ((Z - 91_000) / a) ^ 2)
     elseif Z <= 120_000
-        const T9 = 240 # [K]
-        const LK9 = 12 / 1000 # [K/m]
-        const Z9 = 110_000 # [m]
+        const T9 = 240 # (K)
+        const LK9 = 12 / 1000 # (K / m)
+        const Z9 = 110_000 # (m)
         return T9 + LK9 * (Z - Z9)
     elseif Z <= 1_000_000
-        const T10 = 360 # [K]
-        const Z10 = 120_000 # [m]
-        const Tinf = 1000 # [K]
-        const λ = 0.01875 / 1000 # [1 / m]
+        const T10 = 360 # (K)
+        const Z10 = 120_000 # (m)
+        const Tinf = 1000 # (K)
+        const λ = 0.01875 / 1000 # (1 / m)
         const ξ = (Z - Z10) * (r0 + Z10) / (r0 + Z)
         return Tinf - (Tinf - T10) * exp(-λ * ξ)
     end
@@ -109,7 +109,7 @@ const Ztableupper = [86000.0, 87000.0, 88000.0, 89000.0, 90000.0, 91000.0,
     470000.0, 480000.0, 490000.0, 500000.0, 525000.0, 550000.0, 575000.0,
     600000.0, 625000.0, 650000.0, 675000.0, 700000.0, 725000.0, 750000.0,
     775000.0, 800000.0, 825000.0, 850000.0, 875000.0, 900000.0, 925000.0,
-    950000.0, 975000.0, 1000000.0] # [m]
+    950000.0, 975000.0, 1000000.0] # (m)
 const Ptableupper = [3.7338E-1, 3.1259E-1, 2.6173E-1, 2.1919E-1, 1.8359E-1,
     1.5381E-1, 1.0801E-1, 7.5966E-2, 5.3571E-2, 3.7948E-2, 2.7192E-2,
     1.9742E-2, 1.4477E-2, 1.0751E-2, 8.1142E-3, 7.1042E-3, 6.2614E-3,
@@ -124,7 +124,7 @@ const Ptableupper = [3.7338E-1, 3.1259E-1, 2.6173E-1, 2.1919E-1, 1.8359E-1,
     3.5011E-7, 3.0236E-7, 2.1200E-7, 1.5137E-7, 1.1028E-7, 8.2130E-8,
     6.2601E-8, 4.8865E-8, 3.9048E-8, 3.1908E-8, 2.6611E-8, 2.2599E-8,
     1.9493E-8, 1.7036E-8, 1.5051E-8, 1.3415E-8, 1.2043E-8, 1.0873E-8,
-    9.8635E-9, 8.9816E-9, 8.2043E-9, 7.5138E-9] # [Pa]
+    9.8635E-9, 8.9816E-9, 8.2043E-9, 7.5138E-9] # (Pa)
 const logPtableupper = log(Ptableupper)
 const Mtableupper = [28.95, 28.95, 28.94, 28.93, 28.91, 28.89, 28.82, 28.73,
     28.62, 28.48, 28.30, 28.10, 27.88, 27.64, 27.39, 27.27, 27.14, 27.02,
@@ -134,7 +134,7 @@ const Mtableupper = [28.95, 28.95, 28.94, 28.93, 28.91, 28.89, 28.82, 28.73,
     17.29, 17.09, 16.91, 16.74, 16.57, 16.42, 16.27, 16.13, 15.98, 15.84,
     15.70, 15.55, 15.40, 15.25, 15.08, 14.91, 14.73, 14.54, 14.33, 13.76,
     13.09, 12.34, 11.51, 10.62, 9.72, 8.83, 8.00, 7.24, 6.58, 6.01, 5.54, 5.16,
-    4.85, 4.60, 4.40, 4.25, 4.12, 4.02, 3.94] # [kg / kmol]
+    4.85, 4.60, 4.40, 4.25, 4.12, 4.02, 3.94] # (kg / kmol)
 
 function interpolation_index(Z)
     # Find the index for the lower side of the altitude interval
