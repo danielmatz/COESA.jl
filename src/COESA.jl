@@ -76,21 +76,21 @@ function temperature_upper(Z)
     if Z <= 91_000
         return 186.8673 # (K)
     elseif Z <= 110_000
-        const Tc = 263.1905 # (K)
-        const A = -76.3232 # (K)
-        const a = -19.9429 * 1000 # (m)
+        Tc = 263.1905 # (K)
+        A = -76.3232 # (K)
+        a = -19.9429 * 1000 # (m)
         return Tc + A * sqrt(1 - ((Z - 91_000) / a) ^ 2)
     elseif Z <= 120_000
-        const T9 = 240 # (K)
-        const LK9 = 12 / 1000 # (K / m)
-        const Z9 = 110_000 # (m)
+        T9 = 240 # (K)
+        LK9 = 12 / 1000 # (K / m)
+        Z9 = 110_000 # (m)
         return T9 + LK9 * (Z - Z9)
     elseif Z <= 1_000_000
-        const T10 = 360 # (K)
-        const Z10 = 120_000 # (m)
-        const Tinf = 1000 # (K)
-        const λ = 0.01875 / 1000 # (1 / m)
-        const ξ = (Z - Z10) * (r0 + Z10) / (r0 + Z)
+        T10 = 360 # (K)
+        Z10 = 120_000 # (m)
+        Tinf = 1000 # (K)
+        λ = 0.01875 / 1000 # (1 / m)
+        ξ = (Z - Z10) * (r0 + Z10) / (r0 + Z)
         return Tinf - (Tinf - T10) * exp(-λ * ξ)
     end
 end
