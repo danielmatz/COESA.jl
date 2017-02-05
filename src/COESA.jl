@@ -182,7 +182,7 @@ function mean_molecular_weight_upper(Z)
 end
 
 const speed_of_sound_86km = let
-    Z = prevfloat(86_000.0)
+    Z = 86_000.0 # (m)
     H = geopotential_altitude(Z)
     M = mean_molecular_weight_lower(Z)
     T = temperature_lower(H, M)
