@@ -1,6 +1,8 @@
 # COESA
 
-[![Build Status](https://travis-ci.org/danielmatz/COESA.jl.svg?branch=master)](https://travis-ci.org/danielmatz/COESA.jl)
+Linux/macOS: [![Build Status](https://travis-ci.org/danielmatz/COESA.jl.svg?branch=master)](https://travis-ci.org/danielmatz/COESA.jl)
+
+Windows: [![Build status](https://ci.appveyor.com/api/projects/status/lw6emr2km0m7whgx/branch/master?svg=true)](https://ci.appveyor.com/project/danielmatz/coesa-jl/branch/master)
 
 [![Coverage Status](https://coveralls.io/repos/danielmatz/COESA.jl/badge.svg?branch=master&service=github)](https://coveralls.io/github/danielmatz/COESA.jl?branch=master)
 
