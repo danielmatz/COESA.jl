@@ -4,8 +4,6 @@ Linux/macOS: [![Build Status](https://travis-ci.org/danielmatz/COESA.jl.svg?bran
 
 Windows: [![Build status](https://ci.appveyor.com/api/projects/status/lw6emr2km0m7whgx/branch/master?svg=true)](https://ci.appveyor.com/project/danielmatz/coesa-jl/branch/master)
 
-[![Coverage Status](https://coveralls.io/repos/danielmatz/COESA.jl/badge.svg?branch=master&service=github)](https://coveralls.io/github/danielmatz/COESA.jl?branch=master)
-
 [![codecov.io](http://codecov.io/github/danielmatz/COESA.jl/coverage.svg?branch=master)](http://codecov.io/github/danielmatz/COESA.jl?branch=master)
 
 The U.S. Committee on Extension to the Standard Atmosphere (COESA) atmosphere
