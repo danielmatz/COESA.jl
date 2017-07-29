@@ -189,7 +189,7 @@ const speed_of_sound_86km = let
     speed_of_sound_lower(T, M)
 end
 
-immutable State
+struct State
     mean_molecular_weight::Float64
     temperature::Float64
     pressure::Float64
