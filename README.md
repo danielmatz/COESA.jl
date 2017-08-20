@@ -10,11 +10,14 @@ model, also known as the U.S. Standard Atmosphere, 1976.
 ## Usage
 
 The main function is `atmosphere(z)`, which returns the atmospheric state at
-geometric altitude `z`, where `z` has units of meters.
+geometric altitude `z`, where `z` has units of m.
 
 The atmospheric state object that is returned has the following accessors:
-`density`, `pressure`, `temperature`, `speed_of_sound`, and
-`mean_molecular_weight`.
+- `density`, which returns the density in units of kg/m²
+- `pressure`, which returns the pressure in units of Pa
+- `temperature`, which returns the temperature in units of K
+- `speed_of_sound`, which returns the speed of sound in units of m/s
+- `mean_molecular_weight`, which returns the mean molecular weight in units of kg/kmol
 
 ```julia
 using COESA
