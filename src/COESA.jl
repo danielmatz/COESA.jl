@@ -23,6 +23,7 @@ function findb(H)
 end
 
 const Tmb = let
+    local Tmb
     Tmb = [288.15] # (K)
     for i in 1:(length(Hb) - 1)
         push!(Tmb, Tmb[i] + Lmb[i] * (Hb[i + 1] - Hb[i]))
@@ -37,6 +38,7 @@ end
 temperature_lower(H, M) = Tm(H) / M0 * M
 
 const Pb = let
+    local Pb
     Pb = [101325.0]
     for i in 1:(length(Hb) - 1)
         if Lmb[i] == 0
