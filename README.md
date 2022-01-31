@@ -1,8 +1,7 @@
 # COESA
 
-| **Build Status** | **Code Coverage** |
-| :---: | :---: |
-| [![Build Status](https://travis-ci.org/danielmatz/COESA.jl.svg?branch=master)](https://travis-ci.org/danielmatz/COESA.jl) [![Build status](https://ci.appveyor.com/api/projects/status/lw6emr2km0m7whgx/branch/master?svg=true)](https://ci.appveyor.com/project/danielmatz/coesa-jl/branch/master) | [![codecov.io](http://codecov.io/github/danielmatz/COESA.jl/coverage.svg?branch=master)](http://codecov.io/github/danielmatz/COESA.jl?branch=master) |
+[![CI](https://github.com/danielmatz/COESA.jl/actions/workflows/ci.yml/badge.svg)](https://github.com/danielmatz/COESA.jl/actions/workflows/ci.yml)
+[![codecov](https://codecov.io/gh/danielmatz/COESA.jl/branch/master/graph/badge.svg?token=2BUm9drZnF)](https://codecov.io/gh/danielmatz/COESA.jl)
 
 The U.S. Committee on Extension to the Standard Atmosphere (COESA) atmosphere
 model, also known as the U.S. Standard Atmosphere, 1976.
