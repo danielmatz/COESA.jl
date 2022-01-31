@@ -1,6 +1,6 @@
 # COESA
 
-[![CI](https://github.com/danielmatz/COESA.jl/actions/workflows/ci.yml/badge.svg)](https://github.com/danielmatz/COESA.jl/actions/workflows/ci.yml)
+[![CI](https://github.com/danielmatz/COESA.jl/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/danielmatz/COESA.jl/actions/workflows/ci.yml)
 [![codecov](https://codecov.io/gh/danielmatz/COESA.jl/branch/master/graph/badge.svg?token=2BUm9drZnF)](https://codecov.io/gh/danielmatz/COESA.jl)
 
 The U.S. Committee on Extension to the Standard Atmosphere (COESA) atmosphere
