@@ -1,6 +1,14 @@
 module COESA
 
-export atmosphere, density, temperature, pressure, speed_of_sound, mean_molecular_weight
+export
+    atmosphere,
+    altitude,
+    density,
+    temperature,
+    pressure,
+    speed_of_sound,
+    mean_molecular_weight,
+    dynamic_viscosity
 
 const r0 = 6356766.0 # (m), effective Earth radius at 45 deg N latitude
 const g0 = 9.80665 # (m / s²) or (m² / s² m')
@@ -192,17 +200,27 @@ const speed_of_sound_86km = let
 end
 
 struct State
+    altitude::Float64
     mean_molecular_weight::Float64
     temperature::Float64
     pressure::Float64
     speed_of_sound::Float64
 end
 
+altitude(s::State) = s.altitude
 mean_molecular_weight(s::State) = s.mean_molecular_weight
 temperature(s::State) = s.temperature
 pressure(s::State) = s.pressure
 density(s::State) = pressure(s) * mean_molecular_weight(s) / (Rstar * temperature(s))
 speed_of_sound(s::State) = s.speed_of_sound
+
+function dynamic_viscosity(s::State)
+    altitude(s) > 86_000 && error("unable to compute dynamic viscosity above 86km")
+    β = 1.458e-6                # [kg / s m K^(1/2)]
+    S = 110.4                   # [K]
+    T = temperature(s)
+    β * T^(3/2) / (T + S)
+end
 
 function check_altitude(Z)
     Z < -5000 && error("altitude below lower bound of -5000 m")
@@ -223,7 +241,7 @@ function atmosphere(Z)
         M = mean_molecular_weight_upper(Z)
         c = speed_of_sound_86km
     end
-    State(M, T, P, c)
+    State(Z, M, T, P, c)
 end
 
 end
