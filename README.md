@@ -12,11 +12,13 @@ The main function is `atmosphere(z)`, which returns the atmospheric state at
 geometric altitude `z`, where `z` has units of m.
 
 The atmospheric state object that is returned has the following accessors:
+- `altitude`, which returns the altitude in m
 - `density`, which returns the density in units of kg/m²
 - `pressure`, which returns the pressure in units of Pa
 - `temperature`, which returns the temperature in units of K
 - `speed_of_sound`, which returns the speed of sound in units of m/s
 - `mean_molecular_weight`, which returns the mean molecular weight in units of kg/kmol
+- `dynamic_viscosity`, which returns the dynamic viscosity in units of N*s/m^2; only available up to an altitude of 86km
 
 ```julia
 using COESA
