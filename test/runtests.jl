@@ -1,5 +1,7 @@
 using COESA
 using Test
+using Aqua
+using JET
 
 M0 = COESA.M0
 
@@ -235,6 +237,15 @@ M0 = COESA.M0
         @test round(density(atmos), sigdigits = 4) == 3.561e-15
         @test round(speed_of_sound(atmos), sigdigits = 5) == 274.10
         @test_throws ErrorException dynamic_viscosity(atmos)
+    end
+
+    @testset "Code Quality" begin
+        @testset "Aqua" begin
+            Aqua.test_all(COESA, project_extras = false)
+        end
+        @testset "JET" begin
+            test_package("COESA")
+        end
     end
 
 end
