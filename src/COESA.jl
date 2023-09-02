@@ -1,5 +1,16 @@
 module COESA
 
+# Support package extensions on Julia < 1.9
+if !isdefined(Base, :get_extension)
+    using Requires
+end
+
+@static if !isdefined(Base, :get_extension)
+    function __init__()
+        @require Unitful = "1986cc42-f94f-5a68-af5c-568840ba703d" include("../ext/UnitfulExt.jl")
+    end
+end
+
 export
     atmosphere,
     altitude,
