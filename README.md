@@ -13,7 +13,7 @@ geometric altitude `z`, where `z` has units of m.
 
 The atmospheric state object that is returned has the following accessors:
 - `altitude`, which returns the altitude in m
-- `density`, which returns the density in units of kg/m²
+- `density`, which returns the density in units of kg/m³
 - `pressure`, which returns the pressure in units of Pa
 - `temperature`, which returns the temperature in units of K
 - `speed_of_sound`, which returns the speed of sound in units of m/s

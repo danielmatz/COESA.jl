@@ -2,6 +2,9 @@ using COESA
 using Test
 using Aqua
 using JET
+using Unitful
+
+quantity_type(T, units) = Quantity{T, dimension(units), typeof(units)}
 
 M0 = COESA.M0
 
@@ -237,6 +240,17 @@ M0 = COESA.M0
         @test round(density(atmos), sigdigits = 4) == 3.561e-15
         @test round(speed_of_sound(atmos), sigdigits = 5) == 274.10
         @test_throws ErrorException dynamic_viscosity(atmos)
+    end
+
+    @testset "Unitful Extension" begin
+        atmos = atmosphere(0u"m")
+        @test altitude(atmos) == 0u"m"
+        @test round(quantity_type(Float64, u"kg/kmol"), mean_molecular_weight(atmos), sigdigits = 5) == 28.964u"kg/kmol"
+        @test round(quantity_type(Float64, u"K"), temperature(atmos), sigdigits = 6) == 288.150u"K"
+        @test round(quantity_type(Float64, u"Pa"), pressure(atmos), sigdigits = 6) == 101325u"Pa"
+        @test round(quantity_type(Float64, u"kg/m^3"), density(atmos), sigdigits = 5) == 1.2250u"kg/m^3"
+        @test round(quantity_type(Float64, u"m/s"), speed_of_sound(atmos), sigdigits = 5) == 340.29u"m/s"
+        @test round(quantity_type(Float64, u"N*s/m^2"), dynamic_viscosity(atmos), sigdigits = 5) == 1.7894e-5u"N*s/m^2"
     end
 
     @testset "Code Quality" begin
