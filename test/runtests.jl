@@ -255,7 +255,7 @@ M0 = COESA.M0
 
     @testset "Code Quality" begin
         @testset "Aqua" begin
-            Aqua.test_all(COESA, project_extras = false)
+            Aqua.test_all(COESA)
         end
         @testset "JET" begin
             test_package("COESA")
