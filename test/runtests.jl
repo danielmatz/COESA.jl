@@ -1,7 +1,7 @@
 using COESA
 using Test
-using Aqua
-using JET
+import Aqua
+import JET
 using Unitful
 
 quantity_type(T, units) = Quantity{T, dimension(units), typeof(units)}
@@ -258,7 +258,10 @@ M0 = COESA.M0
             Aqua.test_all(COESA)
         end
         @testset "JET" begin
-            test_package("COESA")
+            # JET doesn't export `test_package` for older versions
+            if isdefined(JET, :test_package)
+                JET.test_package("COESA")
+            end
         end
     end
 
