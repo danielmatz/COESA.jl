@@ -1,7 +1,7 @@
 name = "COESA"
 uuid = "13e0c4e3-fd7a-51bf-9e22-ec7679f18909"
 authors = ["Daniel Matz <daniel.matz@gmail.com>"]
-version = "0.2.0"
+version = "1.0.0"
 
 [deps]
 Requires = "ae029012-a4dd-5104-9daa-d747884805df"
