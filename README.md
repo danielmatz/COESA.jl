@@ -30,6 +30,10 @@ c = speed_of_sound(atmos)
 M = mean_molecular_weight(atmos)
 ```
 
+## Extensions
+
+Integration with [Unitful](https://github.com/PainterQubits/Unitful.jl) is provided by a package extension. If the altitude passed to `atmosphere` is a `Quantity`, then the accessors for the atmospheric state will also return `Quantity`s.
+
 ## Implementation
 
 For altitudes below 86km, the equations from the original report are used.  The
