@@ -260,7 +260,7 @@ M0 = COESA.M0
         @testset "JET" begin
             # JET doesn't export `test_package` for older versions
             if isdefined(JET, :test_package)
-                JET.test_package("COESA")
+                JET.test_package(COESA)
             end
         end
     end
