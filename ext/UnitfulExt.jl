@@ -11,7 +11,7 @@ import COESA:
     speed_of_sound,
     dynamic_viscosity
 
-isdefined(Base, :get_extension) ? (using Unitful) : (using ..Unitful)
+using Unitful: @u_str, ustrip, Quantity, m
 
 struct UnitfulState
     state::COESA.State
