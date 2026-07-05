@@ -37,7 +37,11 @@ jobs:
           version: ${{ matrix.version }}
           arch: ${{ matrix.arch }}
       - uses: julia-actions/cache@v3
-      - uses: julia-actions/julia-downgrade-compat@v1
+      - uses: julia-actions/julia-downgrade-compat@v2
+        # I was having issues with this step and Julia 1.2. It was more
+        # important to me to test with Julia 1.2 than it was to test with
+        # minimum package versions.
+        if: matrix.version != 'min-patch'
       - uses: julia-actions/julia-buildpkg@v1
       - uses: julia-actions/julia-runtest@v1
       - uses: julia-actions/julia-processcoverage@v1
