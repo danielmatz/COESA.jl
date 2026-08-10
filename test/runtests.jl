@@ -3,6 +3,7 @@ using Test
 import Aqua
 import JET
 using Unitful
+import ExplicitImports
 
 quantity_type(T, units) = Quantity{T, dimension(units), typeof(units)}
 
@@ -260,8 +261,20 @@ M0 = COESA.M0
         @testset "JET" begin
             # JET doesn't export `test_package` for older versions
             if isdefined(JET, :test_package)
-                JET.test_package("COESA")
+                JET.test_package(COESA)
             end
+        end
+        @testset "ExplicitImports" begin
+            ExplicitImports.test_explicit_imports(
+                COESA;
+                all_qualified_accesses_are_public = (
+                    ;
+                    # ExplicitImports doesn't like that we reference the
+                    # non-public `State` name in our extensions. See:
+                    # https://github.com/JuliaTesting/ExplicitImports.jl/issues/92.
+                    ignore = (:State,),
+                )
+            )
         end
     end
 
